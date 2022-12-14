@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JetShop</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_cart">Keranjang</string>
+    <string name="menu_profile">Profile</string>
+    <string name="required_point">%d K</string>
+</resources>
