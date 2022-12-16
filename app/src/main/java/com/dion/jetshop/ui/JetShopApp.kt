@@ -21,6 +21,7 @@ import com.dion.jetshop.ui.navigation.NavigationItem
 import com.dion.jetshop.ui.theme.JetShopTheme
 import com.dion.jetshop.R
 import com.dion.jetshop.ui.navigation.Screen
+import com.dion.jetshop.ui.screen.home.HomeScreen
 
 @Composable
 fun JetShopApp(
@@ -38,7 +39,7 @@ fun JetShopApp(
         NavHost(navController = navHostController, startDestination = Screen.Home.route,
         modifier = Modifier.padding(innerPadding)){
             composable(Screen.Home.route){
-
+                HomeScreen()
             }
 
             composable(Screen.Card.route){

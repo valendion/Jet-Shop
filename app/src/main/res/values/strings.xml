@@ -3,5 +3,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_cart">Keranjang</string>
     <string name="menu_profile">Profile</string>
-    <string name="required_point">%d K</string>
+    <string name="required_price">%d K</string>
+    <string name="find_better">Find Better</string>
+    <string name="furniture_for_your_living">Furniture for Your Living</string>
+
 </resources>
