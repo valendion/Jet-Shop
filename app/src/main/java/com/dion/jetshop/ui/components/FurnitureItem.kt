@@ -31,7 +31,6 @@ fun FurnitureItem(
 
     Column(
         modifier = Modifier
-
             .clip(Shapes.medium)
             .background(whiteColor)
             .width(150.dp)

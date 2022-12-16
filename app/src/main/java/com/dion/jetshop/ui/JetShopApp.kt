@@ -22,6 +22,7 @@ import com.dion.jetshop.ui.theme.JetShopTheme
 import com.dion.jetshop.R
 import com.dion.jetshop.ui.navigation.Screen
 import com.dion.jetshop.ui.screen.home.HomeScreen
+import com.dion.jetshop.ui.screen.profile.ProfileScreen
 
 @Composable
 fun JetShopApp(
@@ -47,7 +48,7 @@ fun JetShopApp(
             }
 
             composable(Screen.Profile.route){
-
+                ProfileScreen()
             }
         }
     }
