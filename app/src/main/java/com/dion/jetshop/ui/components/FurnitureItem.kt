@@ -2,8 +2,12 @@ package com.dion.jetshop.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +34,7 @@ fun FurnitureItem(
 ) {
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .clip(Shapes.medium)
             .background(whiteColor)
             .width(150.dp)
@@ -69,8 +73,9 @@ fun FurnitureItem(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-
         )
+
+
     }
 }
 

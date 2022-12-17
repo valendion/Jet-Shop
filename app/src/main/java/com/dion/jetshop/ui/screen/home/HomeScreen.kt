@@ -1,7 +1,7 @@
 package com.dion.jetshop.ui.screen.home
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.MaterialTheme
-
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,17 +33,18 @@ import com.dion.jetshop.ui.theme.PrimaryTextColor
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
+    navigateToDetail: (Long) -> Unit,
     viewModel: HomeViewModel = viewModel(factory = ViewModelFactory(Injection.provideRepository()))
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
-        when(uiState){
+        when (uiState) {
 
             is UiState.Loading -> {
                 viewModel.getAllFurniture()
             }
 
-            is UiState.Success ->{
-                HomeContent(orderFurniture = uiState.data)
+            is UiState.Success -> {
+                HomeContent(orderFurniture = uiState.data, navigateToDetail = navigateToDetail)
             }
 
             is UiState.Error -> {}
@@ -56,7 +56,8 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     orderFurniture: List<OrderFurniture>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToDetail: (Long) -> Unit
 ) {
     Column(modifier = Modifier.background(BackgroundWhiteColor)) {
         Text(
@@ -78,7 +79,8 @@ fun HomeContent(
             style = MaterialTheme.typography.subtitle1.copy(
                 fontWeight = FontWeight.ExtraBold
             ),
-            modifier = Modifier.padding(start = 16.dp, top = 2.dp, bottom = 16.dp, end = 16.dp)
+            modifier = Modifier
+                .padding(start = 16.dp, top = 2.dp, bottom = 16.dp, end = 16.dp)
         )
 
         LazyVerticalGrid(
@@ -91,8 +93,12 @@ fun HomeContent(
             items(orderFurniture) {
                 FurnitureItem(
                     image = it.furniture.image,
-                    title =it.furniture.title,
-                    price =it.furniture.price)
+                    title = it.furniture.title,
+                    price = it.furniture.price,
+                    modifier = Modifier
+                        .clickable {
+                            navigateToDetail(it.furniture.id)
+                        })
             }
         }
 
@@ -104,6 +110,6 @@ fun HomeContent(
 @Composable
 fun HomeContentPreview() {
     JetShopTheme {
-        HomeContent(listOf())
+        HomeContent(listOf(), navigateToDetail = {})
     }
 }
