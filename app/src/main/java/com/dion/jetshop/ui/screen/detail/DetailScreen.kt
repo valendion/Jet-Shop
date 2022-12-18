@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dion.jetshop.R
@@ -35,8 +34,10 @@ fun DetailScreen(
     navigateToCart: () -> Unit
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
-        when(uiState){
-            is UiState.Loading -> {viewModel.getFurnitureById(furnitureId)}
+        when (uiState) {
+            is UiState.Loading -> {
+                viewModel.getFurnitureById(furnitureId)
+            }
             is UiState.Success -> {
                 val data = uiState.data
                 DetailContent(
@@ -46,7 +47,7 @@ fun DetailScreen(
                     count = data.count,
                     description = data.furniture.description,
                     onBackClick = navigateBack,
-                    onAddToCart = {count ->
+                    onAddToCart = { count ->
                         viewModel.addToCart(data.furniture, count = count)
                         navigateToCart()
                     })
@@ -122,22 +123,29 @@ fun DetailContent(
             }
         }
 
-        Row(modifier = Modifier
-            .padding(16.dp)
-            .wrapContentSize(),
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .wrapContentSize(),
 
-        verticalAlignment = Alignment.Bottom) {
+            verticalAlignment = Alignment.Bottom
+        ) {
             Text(
-                text =  stringResource(R.string.required_price, price),
+                text = stringResource(R.string.required_price, price),
                 style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Medium),
                 color = PrimaryTextColor
             )
 
             Button(
-                enabled = orderCount > 0,
-                onClick = {onAddToCart(orderCount)}, content = {
-                    Text(text ="Tambahkan ke Keranjang" )
-                }, colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
+                enabled = orderCount == 0,
+                onClick = {
+                    orderCount++
+                    onAddToCart(orderCount)
+                },
+                content = {
+                    Text(text = "Tambahkan ke Keranjang")
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp)

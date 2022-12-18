@@ -3,6 +3,7 @@ package com.dion.jetshop.data
 import com.dion.jetshop.model.FakeFurnitureDataSource
 import com.dion.jetshop.model.OrderFurniture
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 
@@ -30,7 +31,7 @@ class FurnitureRepository {
     fun updateOrderFurniture(furnitureId: Long, newCountValue: Int): Flow<Boolean> {
         val index = orderFurnitures.indexOfFirst { it.furniture.id == furnitureId }
 
-        val result = if (index >= 9) {
+        val result = if (index >= 0) {
             val orderFurniture = orderFurnitures[index]
             orderFurnitures[index] =
                 orderFurniture.copy(furniture = orderFurniture.furniture, count = newCountValue)
