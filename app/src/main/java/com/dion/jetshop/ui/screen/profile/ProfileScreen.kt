@@ -65,10 +65,3 @@ fun ProfileScreen(
     }
 }
 
-@Preview(showBackground = true, device = Devices.DEFAULT)
-@Composable
-fun ProfileScreenPreview() {
-    JetShopTheme {
-        ProfileScreen()
-    }
-}

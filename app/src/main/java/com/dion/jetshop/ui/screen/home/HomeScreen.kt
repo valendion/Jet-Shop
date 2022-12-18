@@ -105,11 +105,3 @@ fun HomeContent(
 
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun HomeContentPreview() {
-    JetShopTheme {
-        HomeContent(listOf(), navigateToDetail = {})
-    }
-}

@@ -2,6 +2,7 @@ package com.dion.jetshop.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -24,10 +25,12 @@ import com.dion.jetshop.ui.theme.*
 
 @Composable
 fun CartItem(
+    furnitureId: Long,
     image: Int,
     title: String,
     price: Long,
-    deleteItem: () -> Unit,
+    count: Int,
+    deleteItem: (Long, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -36,17 +39,14 @@ fun CartItem(
             .clip(Shapes.medium)
             .background(whiteColor)
             .fillMaxWidth()
-            .height(40.dp),
-
-
-
+            .height(70.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
 
-    ) {
+        ) {
 
         Image(
             painter = painterResource(id = image), contentDescription = null, modifier = Modifier
-                .size(40.dp)
+                .size(70.dp)
                 .clip(RoundedCornerShape(topStart = 4.dp, bottomStart = 4.dp))
         )
 
@@ -54,7 +54,7 @@ fun CartItem(
             Text(
                 text = title,
                 maxLines = 1,
-                style = MaterialTheme.typography.caption.copy(
+                style = MaterialTheme.typography.body1.copy(
                     fontWeight = FontWeight.ExtraBold
                 ),
 
@@ -67,7 +67,8 @@ fun CartItem(
             Text(
                 text = stringResource(R.string.required_price, price),
                 color = SecondTextColor,
-                style = MaterialTheme.typography.overline.copy(
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.body2.copy(
                     fontWeight = FontWeight.Medium
                 ),
             )
@@ -84,16 +85,10 @@ fun CartItem(
                 .clip(Shapes.medium)
                 .background(PrimaryColor)
                 .align(Alignment.CenterVertically)
-
-
+                .clickable {
+                    deleteItem(furnitureId, count - 1)
+                }
         )
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF4F4F4)
-@Composable
-fun CartItemPreview() {
-    JetShopTheme {
-        CartItem(image = R.drawable.shelf1, title = "Rak", price = 2000, deleteItem = { })
-    }
-}

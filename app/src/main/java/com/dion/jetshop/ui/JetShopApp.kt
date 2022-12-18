@@ -82,13 +82,6 @@ fun JetShopApp(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    JetShopTheme {
-        JetShopApp()
-    }
-}
 
 @Composable
 fun BottomBar(

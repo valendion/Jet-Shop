@@ -143,7 +143,7 @@ fun DetailContent(
                     onAddToCart(orderCount)
                 },
                 content = {
-                    Text(text = "Tambahkan ke Keranjang")
+                    Text(text = stringResource(id = R.string.add_to_cart))
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = PrimaryColor),
                 modifier = Modifier

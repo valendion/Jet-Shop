@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -75,15 +73,6 @@ fun FurnitureItem(
                 .align(Alignment.CenterHorizontally)
         )
 
-
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FurnitureItemPreview() {
-    JetShopTheme {
-        FurnitureItem(image = R.drawable.cupboard2, title = "Meja Set Dummy Makanan", price = 20000)
 
     }
 }
